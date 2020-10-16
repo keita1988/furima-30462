@@ -10,12 +10,12 @@
 | first_name            | string | null: false |
 | last_name_kana        | string | null: false |
 | first_name_kana       | string | null: false |
-| birthday              | string | null: false |
+| birthday              | date   | null: false |
 
 ### Association
 
 - has_many :items
-- has_many :buyer
+- has_many :buyers
 
 ## items テーブル
 
@@ -33,7 +33,7 @@
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_one :buyer
 - has_one_attached :image
 
@@ -42,11 +42,11 @@
 
 | Column           | Type       | Options     |
 | ----------       | ---------- | ----------- |
-| post/code        | string     | null: false |
+| post_code        | string     | null: false |
 | prefectures_id   | integer    | null: false |
 | city             | string     | null: false |
 | address          | string     | null: false |
-| appointment_name | string     | null: false |
+| appointment_name | string     |
 | phone_number     | string     | null: false |
 | buyer            | references | null: false foreign_key:true |
 
@@ -60,7 +60,7 @@
 | Column     | Type       | Options     |
 | ---------- | ---------- | ----------- |
 | user       | references | null: false foreign_key:true |
-| product    | references | null: false foreign_key:true |
+| item       | references | null: false foreign_key:true |
 
 ### Association
 
