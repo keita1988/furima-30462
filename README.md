@@ -68,4 +68,3 @@
 - belongs_to :item
 - has_one    :street_address
 
-
