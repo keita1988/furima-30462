@@ -19,7 +19,7 @@ class Item < ApplicationRecord
     validates :deli_fee_id  
     validates :deli_area_id 
     validates :deli_days_id
-    validates :price, numericality: {integer: true,greater_than: 300, less_than: 9999999 }
+    validates :price, numericality: {integer: true,greater_than: 299, less_than: 9999999 }
   end
 
   validates :price, format: {with: /\A[0-9]+\z/
