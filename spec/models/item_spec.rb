@@ -81,12 +81,12 @@ describe Item do
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
       it 'priceの数値が300未満では登録できないこと' do
-        @item.price = "200"
+        @item.price = 200
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than 299")
       end
       it 'priceの数値が10,000,000以上では登録できないこと' do
-        @item.price = "10000000"
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than 9999999")
       end

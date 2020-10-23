@@ -12,8 +12,3 @@ function calculation() {
   window.name = "";
 }
 window.addEventListener('load', calculation)
-// if (window.name != "reload")
-// {
-//   location.reload();
-//   window.name = "reload";
-// }
