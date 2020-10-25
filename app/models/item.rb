@@ -18,7 +18,7 @@ class Item < ApplicationRecord
     validates :status_id    
     validates :deli_fee_id  
     validates :deli_area_id 
-    validates :deli_days_id
+    validates :deli_day_id
     validates :price, numericality: {integer: true,greater_than: 299, less_than: 9999999 }
   end
 
@@ -32,7 +32,7 @@ class Item < ApplicationRecord
 
 
   # ジャンルの選択が「--」の時は保存できないようにする
-  validates :category_id,:status_id, :deli_fee_id, :deli_area_id, :deli_days_id,numericality: { other_than: 1 }
+  validates :category_id,:status_id, :deli_fee_id, :deli_area_id, :deli_day_id,numericality: { other_than: 1 }
 
   belongs_to :user
   has_one :buyer

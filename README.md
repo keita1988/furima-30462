@@ -27,7 +27,7 @@
 | status_id          | integer    | null: false |
 | deli_fee_id        | integer    | null: false |
 | deli_area_id       | integer    | null: false |
-| deli_days_id       | integer    | null: false |
+| deli_day_id       | integer    | null: false |
 | price              | integer    | null: false |
 | user               | references | null: false foreign_key:true |
 

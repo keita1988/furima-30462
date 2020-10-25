@@ -60,13 +60,13 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include("Deli area must be other than 1")
       end
-      it 'deli_days_idが空では出品できないこと' do
-        @item.deli_days_id = nil
+      it 'deli_day_idが空では出品できないこと' do
+        @item.deli_day_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Deli days can't be blank", "Deli days is not a number")
       end
-      it 'deli_days_idが--では出品できないこと' do
-        @item.deli_days_id = 1
+      it 'deli_day_idが--では出品できないこと' do
+        @item.deli_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Deli days must be other than 1")
       end

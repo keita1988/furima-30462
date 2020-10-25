@@ -80,7 +80,7 @@
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:deli_days_id, DeliDay.all, :id, :name, {}, {class:"deli_days-select", id:"item-scheduled-delivery"}) %>
+        <%= f.collection_select(:deli_day_id, DeliDay.all, :id, :name, {}, {class:"deli_days-select", id:"item-scheduled-delivery"}) %>
       </div>
     </div>
     <%# /配送について %>

@@ -7,7 +7,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer  :status_id,     null:false
       t.integer  :deli_fee_id,   null:false
       t.integer  :deli_area_id,  null:false
-      t.integer  :deli_days_id,  null:false
+      t.integer  :deli_day_id,  null:false
       t.integer  :price,         null:false
       t.references :user,        null: false, foreign_key:true
       t.timestamps
