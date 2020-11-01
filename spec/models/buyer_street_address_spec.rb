@@ -38,8 +38,18 @@ RSpec.describe BuyerStreetAddress, type: :model do
       @buyer_street_address.valid?
       expect(@buyer_street_address.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid")
     end
-    it '電話番号が11桁の数字じゃないと購入できない事' do
+    it '電話番号が数字のみでないと購入できない事' do
+      @buyer_street_address.phone_number = 'あa11'
+      @buyer_street_address.valid?
+      expect(@buyer_street_address.errors.full_messages).to include("Phone number is invalid")
+    end
+    it '電話番号が11桁の未満だと購入できない事' do
       @buyer_street_address.phone_number = 00000
+      @buyer_street_address.valid?
+      expect(@buyer_street_address.errors.full_messages).to include("Phone number is invalid")
+    end
+    it '電話番号が12桁以上だと購入できない事' do
+      @buyer_street_address.phone_number = 000000000000
       @buyer_street_address.valid?
       expect(@buyer_street_address.errors.full_messages).to include("Phone number is invalid")
     end
