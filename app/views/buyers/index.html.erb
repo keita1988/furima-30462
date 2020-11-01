@@ -1,5 +1,3 @@
-<%= javascript_pack_tag 'card' %>
-
 <%= render "shared/second-header"%>
 
 <div class='transaction-contents'>
@@ -36,7 +34,6 @@
     <%= render 'shared/error_messages', model: @buyer_street_address %>
 
     <%= form_with model: @buyer_street_address, url: item_buyers_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
-    <%# カード情報の入力 %>
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
         クレジットカード情報入力
@@ -93,7 +90,7 @@
           <label class="form-text">都道府県</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
+        <%= f.collection_select(:prefectures_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>

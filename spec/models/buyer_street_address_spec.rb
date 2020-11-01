@@ -1,44 +1,52 @@
 require 'rails_helper'
 
 RSpec.describe BuyerStreetAddress, type: :model do
-  describe '寄付情報の保存' do
+  describe '購入機能' do
     before do
       @buyer_street_address = FactoryBot.build(:buyer_street_address)
     end
-
-    it 'すべての値が正しく入力されていれば保存できること' do
+    it 'すべての値が正しく入力されていれば購入できること' do
+      expect(@buyer_street_address).to be_valid
     end
-    it 'nameが空だと保存できないこと' do
+    it '郵便番号が空だと購入できない事' do
+      @buyer_street_address.post_code = nil
+      @buyer_street_address.valid?
+      expect(@buyer_street_address.errors.full_messages).to include("Post code can't be blank", "Post code is invalid")
     end
-    it 'nameが全角日本語でないと保存できないこと' do
+    it '郵便番号が数字７桁でかつハイフンを含んでいる時購入できる事' do
+      @buyer_street_address.post_code = '123'
+      @buyer_street_address.valid?
+      expect(@buyer_street_address.errors.full_messages).to include("Post code is invalid")
     end
-    it 'name_readingが空だと保存できないこと' do
+    it '都道府県が--が選択されている時購入できない事' do
+      @buyer_street_address.prefectures_id = 1
+      @buyer_street_address.valid?
+      expect(@buyer_street_address.errors.full_messages).to include("Prefectures must be other than 1")
     end
-    it 'name_readingが全角日本語でないと保存できないこと' do
+    it '市町村が空の場合は購入できない事' do
+      @buyer_street_address.city = nil
+      @buyer_street_address.valid?
+      expect(@buyer_street_address.errors.full_messages).to include("City can't be blank")
     end
-    it 'nicknameが空だと保存できないこと' do
+    it '番地が空の状態は購入できない事' do
+      @buyer_street_address.address = nil
+      @buyer_street_address.valid?
+      expect(@buyer_street_address.errors.full_messages).to include("Address can't be blank")
     end
-    it 'nicknameが半角でないと保存できないこと' do
+    it '電話番号が空の状態は購入できない事' do
+      @buyer_street_address.phone_number = nil
+      @buyer_street_address.valid?
+      expect(@buyer_street_address.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid")
     end
-    it 'postal_codeが空だと保存できないこと' do
+    it '電話番号が11桁の数字じゃないと購入できない事' do
+      @buyer_street_address.phone_number = 00000
+      @buyer_street_address.valid?
+      expect(@buyer_street_address.errors.full_messages).to include("Phone number is invalid")
     end
-    it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
-    end
-    it 'prefectureを選択していないと保存できないこと' do
-    end
-    it 'cityは空でも保存できること' do
-    end
-    it 'house_numberは空でも保存できること' do
-    end
-    it 'building_nameは空でも保存できること' do
-    end
-    it 'priceが空だと保存できないこと' do
-    end
-    it 'priceが全角数字だと保存できないこと' do
-    end
-    it 'priceが1円未満では保存できないこと' do
-    end
-    it 'priceが1,000,000円を超過すると保存できないこと' do
+    it 'クレジットカードの情報が正しくない時購入できない事' do
+      @buyer_street_address.token = nil
+      @buyer_street_address.valid?
+      expect(@buyer_street_address.errors.full_messages).to include("Token can't be blank")
     end
   end
 end
