@@ -1,6 +1,8 @@
 class BuyersController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :authenticate_user!, only: [:index, :cerate]
+  before_action :move_to_index,only: [:index]
+
   def index
     @buyer_street_address = BuyerStreetAddress.new
   end
@@ -26,6 +28,12 @@ class BuyersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
+  def move_to_index
+    if @item.user_id == current_user.id && user_signed_in?
+      redirect_to root_path
+    end
+  end
+  
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
     Payjp::Charge.create(
