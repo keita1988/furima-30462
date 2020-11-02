@@ -50,7 +50,7 @@
 | phone_number     | string     | null: false |
 | buyer            | references | null: false foreign_key:true |
 
-### Association
+### Association 
 
 - belongs_to :buyer
 
