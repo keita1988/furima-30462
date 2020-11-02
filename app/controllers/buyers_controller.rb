@@ -1,7 +1,7 @@
 class BuyersController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :authenticate_user!, only: [:index, :cerate]
-  before_action :move_to_index,only: [:index]
+  before_action :move_to_index,only: [:index ]
 
   def index
     @buyer_street_address = BuyerStreetAddress.new
@@ -29,7 +29,7 @@ class BuyersController < ApplicationController
   end
 
   def move_to_index
-    if @item.user_id == current_user.id && user_signed_in?
+    if @item.user_id == current_user.id
       redirect_to root_path
     end
   end
